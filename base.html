@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Генератор Государства</title>
+<script>
+function generateState() {
+  var stateName = document.getElementById('stateName').value;
+  var governmentTypes = ['Республика', 'Монархия', 'Теократия', 'Диктатура'];
+  var economicSystems = ['Капитализм', 'Социализм', 'Коммунизм', 'Меркантилизм'];
+  var climates = ['Умеренный', 'Тропический', 'Арктический', 'Пустынный'];
+  var geographicFeatures = ['Горы', 'Равнины', 'Острова', 'Побережье'];
+
+  var selectedGovernment = governmentTypes[Math.floor(Math.random() * governmentTypes.length)];
+  var selectedEconomicSystem = economicSystems[Math.floor(Math.random() * economicSystems.length)];
+  var selectedClimate = climates[Math.floor(Math.random() * climates.length)];
+  var selectedGeographicFeature = geographicFeatures[Math.floor(Math.random() * geographicFeatures.length)];
+
+  var traits = ['Плодородные земли', 'Талантливые ученые', 'Сильная экономика', 'Высокая коррупция', 'Сильная армия', 'Низкий уровень образования'];
+  var selectedTraits = [];
+  while(selectedTraits.length < 2){
+    var trait = traits[Math.floor(Math.random() * traits.length)];
+    if(selectedTraits.indexOf(trait) === -1) selectedTraits.push(trait);
+  }
+
+  document.getElementById('stateInfo').innerHTML = 'Название государства: ' + stateName +
+  '<br>Форма правления: ' + selectedGovernment +
+  '<br>Экономическая система: ' + selectedEconomicSystem +
+  '<br>Климат: ' + selectedClimate +
+  '<br>Географическое положение: ' + selectedGeographicFeature +
+  '<br>Черты населения: ' + selectedTraits.join(', ');
+}
+</script>
+</head>
+<body>
+<h1>Генератор Государства</h1>
+<label for="stateName">Введите название государства:</label>
+<input type="text" id="stateName" name="stateName">
+<button onclick="generateState()">Сгенерировать государство</button>
+<div id="stateInfo"></div>
+</body>
+</html>
